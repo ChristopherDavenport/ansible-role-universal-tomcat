@@ -32,3 +32,11 @@
     remote_src: yes
     src: "{{ tomcat_tmp_storage }}/{{ __tomcat_tar }}"
     dest: "{{ tomcat_catalina_home }}"
+
+- name: Check Unarchive Location
+  command: "/usr/bin/env ls {{ tomcat_catalina_home }}"
+  register: __tomcat_unarchive
+  changed_when: False
+  ignore_errors: True
+
+- debug: var=__tomcat_unarchive
