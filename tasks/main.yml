@@ -1,6 +1,13 @@
 ---
 # tasks file for universal-tomcat
 
+- name: Insure Required Packages Are Installed
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - tar
+
 - name: Include Variables For Specific Tomcat Version
   include_vars: "tomcat-{{ tomcat_version }}.yml"
 
