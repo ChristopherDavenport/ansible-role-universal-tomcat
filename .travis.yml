@@ -50,6 +50,7 @@ script:
   # Start The Built Container In The Background
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
 
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install ChristopherDavenport.universal-java'
   # Ansible syntax check.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
 
