@@ -1,0 +1,17 @@
+---
+# defaults file for universal-tomcat
+
+# Tomcat versions available
+# 9 - currently alpha
+# 8
+# 7
+# 6
+
+tomcat_version: "8"
+
+# Catalina Home
+
+tomcat_catalina_home: /u01/tomcat
+
+# Temporary Storage Directory
+tomcat_tmp_storage: /tmp/tomcat-install

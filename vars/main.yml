@@ -1,0 +1,7 @@
+---
+# vars file for universal-tomcat
+
+__tomcat_mirrors:
+  - http://apache.claz.org
+  - http://mirror.cogentco.com/pub/apache
+  - http://mirror.olnevhost.net/pub/apache

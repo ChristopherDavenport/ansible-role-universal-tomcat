@@ -1,0 +1,5 @@
+---
+
+__tomcat_tar: apache-tomcat-8.5.6.tar.gz
+__tomcat_download: http://mirror.olnevhost.net/pub/apache/tomcat/tomcat-8/v8.5.6/bin/{{ __tomcat_tar }}
+__tomcat_checksum: md5:e273e27deb1828ae5f19374616b9fba8

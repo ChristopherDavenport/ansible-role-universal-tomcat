@@ -1,0 +1,27 @@
+---
+# tasks file for universal-tomcat
+
+- name: Include Variables For Specific Tomcat Version
+  include_vars: "tomcat-{{ tomcat_version }}.yml"
+
+- name: Create Temporary Storage Location
+  file:
+    state: directory
+    path: "{{ tomcat_tmp_storage }}"
+
+- name: Create Catalina Home
+  file:
+    state: directory
+    path: "{{ tomcat_catalina_home }}"
+
+- name: Download Tomcat
+  get_url:
+    dest: "{{ tomcat_tmp_storage }}"
+    url: "{{ __tomcat_download }}"
+    checksum: "{{ __tomcat_checksum }}"
+
+- name: Unarchive Tomcat
+  unarchive:
+    remote_src: yes
+    src: "{{ tomcat_tmp_storage }}/{{ __tomcat_tar }}"
+    dest: "{{ tomcat_catalina_home }}"

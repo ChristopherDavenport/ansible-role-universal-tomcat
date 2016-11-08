@@ -1,0 +1,5 @@
+---
+
+__tomcat_tar: apache-tomcat-6.0.47.tar.gz
+__tomcat_download: http://apache.claz.org/tomcat/tomcat-6/v6.0.47/bin/{{ __tomcat_tar }}
+__tomcat_checksum: md5:7b848f76b605c0fd7fd5c7291a050ca4
