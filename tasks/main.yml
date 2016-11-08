@@ -9,7 +9,7 @@
     - tar
 
 - name: Include Variables For Specific Tomcat Version
-  include_vars: "tomcat-{{ tomcat_version }}.yml"
+  include_vars: "tomcat-{{ __tomcat_version_major }}.yml"
 
 - name: Create Temporary Storage Location
   file:

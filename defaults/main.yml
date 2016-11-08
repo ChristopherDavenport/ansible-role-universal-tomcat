@@ -7,7 +7,19 @@
 # 7
 # 6
 
-tomcat_version: "8"
+tomcat_checked_only: True
+
+tomcat_version: "8.5.6"
+
+tomcat_mirrors:
+  - http://archive.apache.org/dist/tomcat
+  - http://apache.claz.org/tomcat
+  - http://mirror.cogentco.com/pub/apache/tomcat
+  - http://mirror.olnevhost.net/pub/apache/tomcat
+
+
+# tomcat_download_url: "{{ tomcat_mirror }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_redis_filename }}"
+
 
 # Catalina Home
 
