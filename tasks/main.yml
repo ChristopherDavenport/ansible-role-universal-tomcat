@@ -32,6 +32,7 @@
     remote_src: yes
     src: "{{ tomcat_tmp_storage }}/{{ __tomcat_tar }}"
     dest: "{{ tomcat_catalina_home }}"
+    keep_newer: yes
     extra_opts: ['--strip-components=1','--show-stored-names']
 
 - name: Check Unarchive Location
