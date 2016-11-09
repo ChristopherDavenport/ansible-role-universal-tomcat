@@ -28,7 +28,7 @@
     url: "{{ item }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_tar_archive }}"
     checksum: "{{ tomcat_checksum }}"
   register: __tomcat_download
-  until: "{{ __tomcat_download|succeeded }}"
+  until: __tomcat_download|succeeded
   retries: 5
   ignore_errors: True
   with_items: "{{ tomcat_mirrors }}"
@@ -41,7 +41,7 @@
     src: "{{ tomcat_tmp_storage }}/{{ tomcat_tar_archive }}"
     dest: "{{ tomcat_catalina_home }}"
     keep_newer: yes
-    extra_opts: ['--strip-components=1']
+    extra_opts: ['--strip-components=1', '--show-stored-names']
 
 - name: Check Unarchive Location
   command: "/usr/bin/env ls {{ tomcat_catalina_home }}"
