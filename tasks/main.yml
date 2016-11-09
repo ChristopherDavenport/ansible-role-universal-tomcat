@@ -37,11 +37,3 @@
     dest: "{{ tomcat_catalina_home }}"
     keep_newer: yes
     extra_opts: ['--strip-components=1', '--show-stored-names']
-
-- name: Check Unarchive Location
-  command: "/usr/bin/env ls {{ tomcat_catalina_home }}"
-  register: __tomcat_unarchive
-  changed_when: False
-  ignore_errors: True
-
-- debug: var=__tomcat_unarchive
