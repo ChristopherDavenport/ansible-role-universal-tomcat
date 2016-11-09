@@ -37,3 +37,17 @@
     dest: "{{ tomcat_catalina_home }}"
     keep_newer: yes
     extra_opts: ['--strip-components=1', '--show-stored-names']
+
+- name: Create Tomcat Group
+  group:
+    name: "{{ tomcat_user_group }}"
+    state: present
+
+- name: Create Tomcat user
+  user:
+    name: "{{ tomcat_user_name }}"
+    home: "{{ tomcat_user_home }}"
+    group: "{{ tomcat_user_group }}"
+    system: "{{ tomcat_user_system }}"
+    createhome: true
+    comment: "Tomcat Service User"

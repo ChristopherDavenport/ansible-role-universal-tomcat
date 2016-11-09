@@ -23,3 +23,17 @@ tomcat_catalina_home: /opt/tomcat
 
 # Temporary Storage Directory
 tomcat_tmp_storage: /tmp/tomcat-ansible
+
+tomcat_user_name: tomcat
+tomcat_user_group: tomcat
+tomcat_user_home: /srv/{{ tomcat_user_name }}
+tomcat_user_system: false
+
+tomcat_port_shutdown: 8005
+tomcat_port_connector: 8080
+tomcat_port_redirect: 8443
+tomcat_port_ajp: 8009
+
+tomcat_instance_path: /srv/{{tomcat_user_name}}
+
+tomcat_prefer_ipv4: true
