@@ -28,8 +28,12 @@
     url: "{{ item }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_tar_archive }}"
     checksum: "{{ tomcat_checksum }}"
   register: __tomcat_download
-  until: __tomcat_download|succeeded
+  until: "{{ __tomcat_download|succeeded }}"
+  retries: 5
+  ignore_errors: True
   with_items: "{{ tomcat_mirrors }}"
+
+- debug: var=__tomcat_download
 
 - name: Unarchive Tomcat
   unarchive:
