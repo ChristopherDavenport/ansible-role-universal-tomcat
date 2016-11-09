@@ -1,6 +1,8 @@
 Universal Tomcat
 =========
 
+[![Build Status](https://travis-ci.org/ChristopherDavenport/ansible-role-universal-tomcat.svg?branch=master)](https://travis-ci.org/ChristopherDavenport/ansible-role-universal-tomcat)
+
 This is a system for installing and managing tomcat configurations.
 
 Requirements
