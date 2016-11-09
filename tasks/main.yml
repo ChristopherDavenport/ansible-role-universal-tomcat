@@ -7,9 +7,10 @@
     state: installed
   with_items:
     - tar
+    - wget
 
 - name: Include Variables For Specific Tomcat Version
-  include_vars: "tomcat-{{ __tomcat_version_major }}.yml"
+  include_vars: "tomcat-{{ tomcat_version }}.yml"
 
 - name: Create Temporary Storage Location
   file:
@@ -24,16 +25,19 @@
 - name: Download Tomcat
   get_url:
     dest: "{{ tomcat_tmp_storage }}"
-    url: "{{ __tomcat_download }}"
-    checksum: "{{ __tomcat_checksum }}"
+    url: "{{ item }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_tar_archive }}"
+    checksum: "{{ tomcat_checksum }}"
+  register: __tomcat_download
+  until: __tomcat_download|succeeded
+  with_items: "{{ tomcat_mirrors }}"
 
 - name: Unarchive Tomcat
   unarchive:
     remote_src: yes
-    src: "{{ tomcat_tmp_storage }}/{{ __tomcat_tar }}"
+    src: "{{ tomcat_tmp_storage }}/{{ tomcat_tar_archive }}"
     dest: "{{ tomcat_catalina_home }}"
     keep_newer: yes
-    extra_opts: ['--strip-components=1','--show-stored-names']
+    extra_opts: ['--strip-components=1']
 
 - name: Check Unarchive Location
   command: "/usr/bin/env ls {{ tomcat_catalina_home }}"

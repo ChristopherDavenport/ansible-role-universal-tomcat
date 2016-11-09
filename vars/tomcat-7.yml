@@ -1,5 +1,0 @@
----
-
-__tomcat_tar: apache-tomcat-7.0.72.tar.gz
-__tomcat_download: http://mirror.cogentco.com/pub/apache/tomcat/tomcat-7/v7.0.72/bin/{{ __tomcat_tar }}
-__tomcat_checksum: md5:c24bfae15bb9c510451a05582aae634d
