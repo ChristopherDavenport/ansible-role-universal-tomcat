@@ -23,12 +23,13 @@
     path: "{{ tomcat_catalina_home }}"
 
 - name: Download Tomcat
+  ignore_errors: True
+  with_items: "{{ tomcat_mirrors }}"
   get_url:
     dest: "{{ tomcat_tmp_storage }}"
     url: "{{ item }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_tar_archive }}"
     checksum: "{{ tomcat_checksum }}"
-  ignore_errors: True
-  with_items: "{{ tomcat_mirrors }}"
+
 
 - name: Unarchive Tomcat
   unarchive:
@@ -51,3 +52,32 @@
     system: "{{ tomcat_user_system }}"
     createhome: true
     comment: "Tomcat Service User"
+
+- name: Create Instance Path Folders
+  with_nested:
+    - "{{ tomcat_instances }}"
+    - "{{ tomcat_instance_directories }}"
+  file:
+    state: directory
+    path: "{{ tomcat_instance_path }}/catalina/{{item.0.name}}/{{ item.1 }}"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0755
+
+- name: Install server.xml
+  with_items: "{{ tomcat_instances }}"
+  template:
+    src: server.xml.j2
+    dest: "{{ tomcat_instance_path }}/catalina/{{ item.name }}/conf/server.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
+
+- name: Install web.xml
+  with_items: "{{ tomcat_instances }}"
+  template:
+    src: web.xml.j2
+    dest: "{{ tomcat_instance_path }}/catalina/{{ item.name }}/conf/web.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640

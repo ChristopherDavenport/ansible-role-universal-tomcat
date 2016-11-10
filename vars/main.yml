@@ -4,3 +4,12 @@
 # Tomcat major version
 tomcat_version_major: "{{ tomcat_version|truncate(1, True, '') }}"
 tomcat_tar_archive: "apache-tomcat-{{ tomcat_version }}.tar.gz"
+
+tomcat_instance_directories:
+  - conf
+  - logs
+  - webapps
+  - temp
+  - bin
+  - lib
+  - work

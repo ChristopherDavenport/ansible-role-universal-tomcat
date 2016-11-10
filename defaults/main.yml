@@ -34,6 +34,12 @@ tomcat_port_connector: 8080
 tomcat_port_redirect: 8443
 tomcat_port_ajp: 8009
 
+tomcat_catalina_opts: ""
 tomcat_instance_path: /srv/{{tomcat_user_name}}
 
 tomcat_prefer_ipv4: true
+tomcat_override_uri_encoding: ""
+tomcat_prefer_urandom: true
+
+tomcat_instances:
+  - name: tomcat
