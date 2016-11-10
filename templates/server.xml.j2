@@ -37,7 +37,7 @@
 
     <Connector port="{{ tomcat_port_connector }}" protocol="HTTP/1.1"
                connectionTimeout="20000"
-               redirectPort="{{ tomcat_port_redirect) }}"
+               redirectPort="{{ tomcat_port_redirect }}"
 {% if tomcat_override_uri_encoding not in (None, "") %}
                URIEncoding="{{ tomcat_override_uri_encoding }}"
 {% endif %}
