@@ -35,21 +35,21 @@
 
   <Service name="Catalina">
 
-    <Connector port="{{ tomcat_port_connector) }}" protocol="HTTP/1.1"
+    <Connector port="{{ tomcat_port_connector }}" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="{{ tomcat_port_redirect) }}"
-{% if item.override_uri_encoding|default(tomcat_override_uri_encoding) not in (None, "") %}
+{% if tomcat_override_uri_encoding not in (None, "") %}
                URIEncoding="{{ tomcat_override_uri_encoding }}"
 {% endif %}
     />
 
     <!--
-    <Connector port="{{ tomcat_port_redirect) }}" protocol="org.apache.coyote.http11.Http11Protocol"
+    <Connector port="{{ tomcat_port_redirect }}" protocol="org.apache.coyote.http11.Http11Protocol"
                maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
                clientAuth="false" sslProtocol="TLS" />
     -->
 
-    <Connector port="{{ tomcat_port_ajp) }}" protocol="AJP/1.3" redirectPort="{{ tomcat_port_redirect) }}" />
+    <Connector port="{{ tomcat_port_ajp }}" protocol="AJP/1.3" redirectPort="{{ tomcat_port_redirect }}" />
 
     <Engine name="Catalina" defaultHost="localhost">
 
