@@ -9,9 +9,26 @@
     - tar
     - wget
 
+# Here We Import The Variables For Versions like checksum
 - name: Include Variables For Specific Tomcat Version
   include_vars: "tomcat-{{ tomcat_version }}.yml"
 
+# Here We Create The Group and User
+- name: Create Tomcat Group
+  group:
+    name: "{{ tomcat_user_group }}"
+    state: present
+
+- name: Create Tomcat user
+  user:
+    name: "{{ tomcat_user_name }}"
+    home: "{{ tomcat_user_home }}"
+    group: "{{ tomcat_user_group }}"
+    system: "{{ tomcat_user_system }}"
+    createhome: true
+    comment: "Tomcat Service User"
+
+# Creating Basic Locations
 - name: Create Temporary Storage Location
   file:
     state: directory
@@ -30,54 +47,49 @@
     url: "{{ item }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_tar_archive }}"
     checksum: "{{ tomcat_checksum }}"
 
-
 - name: Unarchive Tomcat
   unarchive:
     remote_src: yes
     src: "{{ tomcat_tmp_storage }}/{{ tomcat_tar_archive }}"
     dest: "{{ tomcat_catalina_home }}"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
     keep_newer: yes
     extra_opts: ['--strip-components=1', '--show-stored-names']
 
-- name: Create Tomcat Group
-  group:
-    name: "{{ tomcat_user_group }}"
-    state: present
-
-- name: Create Tomcat user
-  user:
-    name: "{{ tomcat_user_name }}"
-    home: "{{ tomcat_user_home }}"
-    group: "{{ tomcat_user_group }}"
-    system: "{{ tomcat_user_system }}"
-    createhome: true
-    comment: "Tomcat Service User"
-
-- name: Create Instance Path Folders
-  with_nested:
-    - "{{ tomcat_instances }}"
-    - "{{ tomcat_instance_directories }}"
-  file:
-    state: directory
-    path: "{{ tomcat_instance_path }}/catalina/{{item.0.name}}/{{ item.1 }}"
-    owner: "{{ tomcat_user_name }}"
-    group: "{{ tomcat_user_group }}"
-    mode: 0755
-
 - name: Install server.xml
-  with_items: "{{ tomcat_instances }}"
   template:
     src: server.xml.j2
-    dest: "{{ tomcat_instance_path }}/catalina/{{ item.name }}/conf/server.xml"
+    dest: "{{ tomcat_instance_path }}/conf/server.xml"
     owner: "{{ tomcat_user_name }}"
     group: "{{ tomcat_user_group }}"
     mode: 0640
 
 - name: Install web.xml
-  with_items: "{{ tomcat_instances }}"
   template:
     src: web.xml.j2
-    dest: "{{ tomcat_instance_path }}/catalina/{{ item.name }}/conf/web.xml"
+    dest: "{{ tomcat_instance_path }}/conf/web.xml"
     owner: "{{ tomcat_user_name }}"
     group: "{{ tomcat_user_group }}"
     mode: 0640
+
+- name: Install Environment File
+  template:
+    src: systemd_env.j2
+    dest: "{{ tomcat_instance_path }}/.systemd.conf"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
+
+- name: Install Service
+  template:
+    src: systemd_service.j2
+    dest: /etc/systemd/system/tomcat.service
+    mode: 0644
+
+- name: Start Service
+  systemd:
+    name: tomcat
+    enabled: yes
+    state: started
+    daemon_reload: yes

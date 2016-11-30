@@ -1,0 +1,16 @@
+[Unit]
+Description=Tomcat Server
+After=network.target
+
+[Service]
+Type=forking
+User={{ tomcat_user_name }}
+Restart=on-failure
+Environment=TOMCAT_JAVA_HOME={{ java_home }}
+Environment=CATALINA_HOME={{ tomcat_catalina_home }}
+EnvironmentFile=-{{ tomcat_instance_path }}/.systemd.conf
+ExecStart={{ tomcat_instance_path }}/bin/startup.sh
+ExecStop={{ tomcat_instance_path }}/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
