@@ -13,36 +13,36 @@ env:
     version: "9.0.0.M11"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "9.0.0.M11"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "9.0.0.M11"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: trusty
+  #   version: "9.0.0.M11"
+  #   init: /sbin/init
+  #   run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: precise
+  #   version: "9.0.0.M11"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: EL
     distribution_version: "7"
     version: "9.0.0.M11"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: EL
-    distribution_version: "6"
-    version: "9.0.0.M11"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: EL
+  #   distribution_version: "6"
+  #   version: "9.0.0.M11"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: Debian
     distribution_version: jessie
     version: "9.0.0.M11"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Fedora
-    distribution_version: "24"
-    version: "9.0.0.M11"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Fedora
+  #   distribution_version: "24"
+  #   version: "9.0.0.M11"
+  #   init: /usr/lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Fedora
     distribution_version: "23"
     version: "9.0.0.M11"
@@ -58,36 +58,36 @@ env:
     version: "8.5.6"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "8.5.6"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "8.5.6"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: trusty
+  #   version: "8.5.6"
+  #   init: /sbin/init
+  #   run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: precise
+  #   version: "8.5.6"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: EL
     distribution_version: "7"
     version: "8.5.6"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: EL
-    distribution_version: "6"
-    version: "8.5.6"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: EL
+  #   distribution_version: "6"
+  #   version: "8.5.6"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: Debian
     distribution_version: jessie
     version: "8.5.6"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Fedora
-    distribution_version: "24"
-    version: "8.5.6"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Fedora
+  #   distribution_version: "24"
+  #   version: "8.5.6"
+  #   init: /usr/lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Fedora
     distribution_version: "23"
     version: "8.5.6"
@@ -103,36 +103,36 @@ env:
     version: "8.0.38"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "8.0.38"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "8.0.38"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: trusty
+  #   version: "8.0.38"
+  #   init: /sbin/init
+  #   run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: precise
+  #   version: "8.0.38"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: EL
     distribution_version: "7"
     version: "8.0.38"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: EL
-    distribution_version: "6"
-    version: "8.0.38"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: EL
+  #   distribution_version: "6"
+  #   version: "8.0.38"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: Debian
     distribution_version: jessie
     version: "8.0.38"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Fedora
-    distribution_version: "24"
-    version: "8.0.38"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Fedora
+  #   distribution_version: "24"
+  #   version: "8.0.38"
+  #   init: /usr/lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Fedora
     distribution_version: "23"
     version: "8.0.38"
@@ -148,16 +148,16 @@ env:
     version: "7.0.72"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "7.0.72"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "7.0.72"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: trusty
+  #   version: "7.0.72"
+  #   init: /sbin/init
+  #   run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: precise
+  #   version: "7.0.72"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: EL
     distribution_version: "7"
     version: "7.0.72"
@@ -173,11 +173,11 @@ env:
     version: "7.0.72"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Fedora
-    distribution_version: "24"
-    version: "7.0.72"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Fedora
+  #   distribution_version: "24"
+  #   version: "7.0.72"
+  #   init: /usr/lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Fedora
     distribution_version: "23"
     version: "7.0.72"
@@ -193,36 +193,36 @@ env:
     version: "6.0.47"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "6.0.47"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "6.0.47"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: trusty
+  #   version: "6.0.47"
+  #   init: /sbin/init
+  #   run_opts: ""
+  # - distribution: Ubuntu
+  #   distribution_version: precise
+  #   version: "6.0.47"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: EL
     distribution_version: "7"
     version: "6.0.47"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: EL
-    distribution_version: "6"
-    version: "6.0.47"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: EL
+  #   distribution_version: "6"
+  #   version: "6.0.47"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: Debian
     distribution_version: jessie
     version: "6.0.47"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Fedora
-    distribution_version: "24"
-    version: "6.0.47"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Fedora
+  #   distribution_version: "24"
+  #   version: "6.0.47"
+  #   init: /usr/lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Fedora
     distribution_version: "23"
     version: "6.0.47"
@@ -232,14 +232,15 @@ env:
 before_install:
   # Pull container.
   - 'docker pull ansiblecheck/ansiblecheck:${distribution,,}-${distribution_version}'
-
-script:
   - container_id=$(mktemp)
-
   # Start The Built Container In The Background
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
 
+install:
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install ChristopherDavenport.universal-java'
+
+script:
+
   # Ansible syntax check.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
 
