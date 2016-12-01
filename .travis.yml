@@ -163,11 +163,11 @@ env:
     version: "7.0.72"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: EL
-    distribution_version: "6"
-    version: "7.0.72"
-    init: /sbin/init
-    run_opts: ""
+  # - distribution: EL
+  #   distribution_version: "6"
+  #   version: "7.0.72"
+  #   init: /sbin/init
+  #   run_opts: ""
   - distribution: Debian
     distribution_version: jessie
     version: "7.0.72"
