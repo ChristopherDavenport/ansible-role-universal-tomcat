@@ -14,10 +14,6 @@ tomcat_mirrors:
   - http://archive.apache.org/dist/tomcat
 
 
-# Catalina Home
-
-tomcat_catalina_home: /opt/tomcat
-
 # Temporary Storage Directory
 tomcat_tmp_storage: /tmp/tomcat-ansible
 
@@ -32,17 +28,16 @@ tomcat_port_redirect: 8443
 tomcat_port_ajp: 8009
 
 tomcat_catalina_opts: ""
-tomcat_instance_path: /opt/tomcat
+
+tomcat_base_dir: /opt
+tomcat_catalina_home: "{{ tomcat_base_dir }}/tomcat"
+tomcat_instance_path: "{{ tomcat_base_dir }}/tomcat"
 
 tomcat_prefer_ipv4: true
 tomcat_override_uri_encoding: ""
 tomcat_prefer_urandom: true
 
 tomcat_instance: tomcat
-
-tomcat_disable_persistence_across_restarts: true
-tomcat_extra_global_naming_resources: ""
-tomcat_context_xml_extra: ""
 
 tomcat_roles:
   - manager
@@ -58,6 +53,16 @@ tomcat_users: []
   #   password: tomcat
   #   roles: "manager-gui,admin-gui"
 
-# tomcat_extra_libs: []
-  # - name:
-  #   path:
+
+# These are in fileglob notation
+# i.e. /opt/instance/libs/*
+tomcat_extra_libs_path: ""
+tomcat_webapps_path: ""
+
+# Strings That Allow you to modify your
+# tomcat instance in a predictable fashion.
+tomcat_extra_global_naming_resources: ""
+tomcat_context_xml_extra: ""
+
+# Disable or enable session persistence
+tomcat_disable_persistence_across_restarts: false
