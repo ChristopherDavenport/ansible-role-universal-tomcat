@@ -73,6 +73,42 @@
     group: "{{ tomcat_user_group }}"
     mode: 0640
 
+- name: Install context.xml
+  template:
+    src: context.xml.j2
+    dest: "{{ tomcat_instance_path }}/conf/context.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
+
+- name: Install tomcat-users.xml
+  template:
+    src: tomcat-users.xml.j2
+    dest: "{{ tomcat_instance_path }}/conf/tomcat-users.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
+
+- name: Install Extra Libraries
+  with_fileglob: "{{ tomcat_extra_libs_path }}"
+  when: '{{ tomcat_extra_libs_path not in (None, "") }}'
+  copy:
+    src: "{{ item }}"
+    dest: "{{ tomcat_instance_path }}/lib/"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0644
+
+- name: Install WebApps
+  with_fileglob: "{{ tomcat_webapps_path }}"
+  # when: '{{ tomcat_webapps_path in (None, "") }}'
+  copy:
+    src: "{{ item }}"
+    dest: "{{ tomcat_instance_path }}/webapps/"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0644
+
 - name: Install Environment File
   template:
     src: systemd_env.j2
@@ -93,3 +129,8 @@
     enabled: yes
     state: started
     daemon_reload: yes
+
+- name: Restart Service
+  systemd:
+    name: tomcat
+    state: restarted

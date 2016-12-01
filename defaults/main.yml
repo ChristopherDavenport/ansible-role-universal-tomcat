@@ -12,10 +12,7 @@ tomcat_version: "8.5.6"
 
 tomcat_mirrors:
   - http://archive.apache.org/dist/tomcat
-  - http://apache.claz.org/tomcat
-  - http://mirror.cogentco.com/pub/apache/tomcat
-  - http://mirror.olnevhost.net/pub/apache/tomcat
-  - http://www-us.apache.org/dist/tomcat
+
 
 # Catalina Home
 
@@ -42,3 +39,25 @@ tomcat_override_uri_encoding: ""
 tomcat_prefer_urandom: true
 
 tomcat_instance: tomcat
+
+tomcat_disable_persistence_across_restarts: true
+tomcat_extra_global_naming_resources: ""
+tomcat_context_xml_extra: ""
+
+tomcat_roles:
+  - manager
+  - manager-gui
+  - manager-script
+  - manager-jmx
+  - admin
+  - admin-gui
+  - admin-script
+
+tomcat_users: []
+  # - name: tomcat
+  #   password: tomcat
+  #   roles: "manager-gui,admin-gui"
+
+# tomcat_extra_libs: []
+  # - name:
+  #   path:

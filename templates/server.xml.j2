@@ -31,6 +31,9 @@
               description="User database that can be updated and saved"
               factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
               pathname="conf/tomcat-users.xml" />
+{% if tomcat_extra_global_naming_resources not in (None, "") %}
+  {{ tomcat_extra_global_naming_resources }}
+{% endif %}
   </GlobalNamingResources>
 
   <Service name="Catalina">
