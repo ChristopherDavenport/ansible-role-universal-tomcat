@@ -2,3 +2,6 @@ CATALINA_BASE={{ tomcat_instance_path }}
 {% if tomcat_catalina_opts not in (None, "") %}
 CATALINA_OPTS={{ tomcat_catalina_opts }}
 {% endif %}
+{% if tomcat_java_opts not in (None, "") %}
+JAVA_OPTS={{ tomcat_java_opts }}
+{% endif %}
