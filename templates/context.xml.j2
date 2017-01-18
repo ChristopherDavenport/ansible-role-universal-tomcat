@@ -16,7 +16,7 @@
   limitations under the License.
 -->
 <!-- The contents of this file will be loaded for each web application -->
-<Context>
+<Context {% if tomcat_context_xml_header_extra not in (None, "") %}{{ tomcat_context_xml_header_extra }}{% endif %} >
 
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
