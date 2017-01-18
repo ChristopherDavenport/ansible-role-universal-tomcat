@@ -60,10 +60,19 @@
     keep_newer: yes
     # extra_opts: ['--strip-components=1', '--show-stored-names']
 
+- name: Give Ownership Of Unarchived Folder
+  file:
+    state: directory
+    path: "{{tomcat_base_dir }}/apache-tomcat-{{ tomcat_version }}"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+
 - name: Create Symlink To Archive Location
   file:
     path: "{{ tomcat_instance_path }}"
     src: "{{ tomcat_base_dir }}/apache-tomcat-{{ tomcat_version }}"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
     state: link
 
 - name: Install server.xml
