@@ -13,7 +13,6 @@ tomcat_version: "8.5.6"
 tomcat_mirrors:
   - http://archive.apache.org/dist/tomcat
 
-
 # Temporary Storage Directory
 tomcat_tmp_storage: /tmp/tomcat-ansible
 
@@ -27,6 +26,7 @@ tomcat_port_connector: 8080
 tomcat_port_redirect: 8443
 tomcat_port_ajp: 8009
 
+tomcat_java_opts: ""
 tomcat_catalina_opts: ""
 
 tomcat_base_dir: /opt
