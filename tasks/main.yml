@@ -215,7 +215,8 @@
 - name: Restart Service if Changed
   command: /bin/true
   notify: Restart Tomcat
-  when: "{{ not __tomcat_start_service.changed and ( __tomcat_standard_server_xml.changed or
+  when: "{{ not __tomcat_start_service.changed and
+    ( __tomcat_standard_server_xml.changed or
     __tomcat_custom_server_xml.changed or
     __tomcat_standard_web_xml.changed or
     __tomcat_custom_web_xml.changed or

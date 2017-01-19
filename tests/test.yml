@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars:
-    java_type: Oracle
+    java_type: Open
     java_version: "8"
   pre_tasks:
     - name: Update apt cache.
