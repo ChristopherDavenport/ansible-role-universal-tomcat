@@ -133,15 +133,6 @@
     group: "{{ tomcat_user_group }}"
     mode: 0755
 
-- name: Install Environment File
-  register: __tomcat_environment_file
-  template:
-    src: systemd_env.j2
-    dest: "{{ tomcat_instance_path }}/.systemd.conf"
-    owner: "{{ tomcat_user_name }}"
-    group: "{{ tomcat_user_group }}"
-    mode: 0640
-
 - name: Install Service
   register: __tomcat_service
   template:
@@ -163,4 +154,4 @@
   when: "{{ not __tomcat_start_service.changed and ( __tomcat_server_xml.changed or
     __tomcat_web_xml.changed or __tomcat_context_xml.changed or
     __tomcat_users_xml.changed or __tomcat_install_libs.changed or
-    __tomcat_install_webapps.changed or __tomcat_environment_file.changed ) }}"
+    __tomcat_install_webapps.changed ) }}"
