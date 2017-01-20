@@ -115,16 +115,6 @@
     group: "{{ tomcat_user_group }}"
     mode: 0640
 
-- name: Install custom server.xml
-  when: tomcat_use_custom_web_xml
-  register: __tomcat_custom_server_xml
-  copy:
-    src: "{{ tomcat_custom_server_xml }}"
-    dest: "{{ tomcat_instance_path }}/conf/web.xml"
-    owner: "{{ tomcat_user_name }}"
-    group: "{{ tomcat_user_group }}"
-    mode: 0640
-
 - name: Install standard context.xml
   when: not tomcat_use_custom_context_xml
   register: __tomcat_standard_context_xml
