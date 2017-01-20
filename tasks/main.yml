@@ -204,7 +204,7 @@
   register: __tomcat_custom_manager_context_xml
   copy:
     src: "{{ tomcat_custom_manager_context_xml }}"
-    dest: "{{ tomcat_instance_path }}/conf/context.xml"
+    dest: "{{ tomcat_instance_path }}/webapps/manager/META-INF/context.xml"
     owner: "{{ tomcat_user_name }}"
     group: "{{ tomcat_user_group }}"
     mode: 0640
