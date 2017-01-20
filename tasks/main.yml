@@ -155,16 +155,6 @@
     group: "{{ tomcat_user_group }}"
     mode: 0640
 
-- name: Install custom manager app context.xml
-  when: tomcat_use_custom_manager_context_xml
-  register: __tomcat_custom_manager_context_xml
-  copy:
-    src: "{{ tomcat_custom_manager_context_xml }}"
-    dest: "{{ tomcat_instance_path }}/conf/context.xml"
-    owner: "{{ tomcat_user_name }}"
-    group: "{{ tomcat_user_group }}"
-    mode: 0640
-
 - name: Install Extra Libraries
   register: __tomcat_install_libs
   with_fileglob: "{{ tomcat_extra_libs_path }}"
@@ -201,6 +191,23 @@
     enabled: yes
     state: started
     daemon_reload: yes
+
+- name: Wait for Manager to Unpack Before Placing New Context
+  when:
+    - tomcat_use_custom_manager_context_xml
+    - __tomcat_start_service|changed
+  pause:
+    seconds: 10
+
+- name: Install custom manager app context.xml
+  when: tomcat_use_custom_manager_context_xml
+  register: __tomcat_custom_manager_context_xml
+  copy:
+    src: "{{ tomcat_custom_manager_context_xml }}"
+    dest: "{{ tomcat_instance_path }}/conf/context.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
 
 - name: Restart Service if Changed
   command: /bin/true
