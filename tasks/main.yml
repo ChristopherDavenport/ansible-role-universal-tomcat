@@ -76,7 +76,7 @@
     state: link
 
 - name: Install standard server.xml
-  when: "{{ not tomcat_use_custom_server_xml }}"
+  when: not tomcat_use_custom_server_xml
   register: __tomcat_standard_server_xml
   template:
     src: server.xml.j2
@@ -86,7 +86,7 @@
     mode: 0640
 
 - name: Install custom server.xml
-  when: "{{ tomcat_use_custom_server_xml }}"
+  when: tomcat_use_custom_server_xml
   register: __tomcat_custom_server_xml
   copy:
     src: "{{ tomcat_custom_server_xml }}"
@@ -96,7 +96,7 @@
     mode: 0640
 
 - name: Install standard web.xml
-  when: "{{ not tomcat_use_custom_web_xml }}"
+  when: not tomcat_use_custom_web_xml
   register: __tomcat_standard_web_xml
   template:
     src: web.xml.j2
@@ -106,7 +106,7 @@
     mode: 0640
 
 - name: Install custom web.xml
-  when: "{{ tomcat_use_custom_web_xml }}"
+  when: tomcat_use_custom_web_xml
   register: __tomcat_custom_web_xml
   copy:
     src: "{{ tomcat_custom_web_xml }}"
@@ -115,18 +115,8 @@
     group: "{{ tomcat_user_group }}"
     mode: 0640
 
-- name: Install custom server.xml
-  when: "{{ tomcat_use_custom_web_xml }}"
-  register: __tomcat_custom_server_xml
-  copy:
-    src: "{{ tomcat_custom_server_xml }}"
-    dest: "{{ tomcat_instance_path }}/conf/web.xml"
-    owner: "{{ tomcat_user_name }}"
-    group: "{{ tomcat_user_group }}"
-    mode: 0640
-
 - name: Install standard context.xml
-  when: "{{ not tomcat_use_custom_context_xml }}"
+  when: not tomcat_use_custom_context_xml
   register: __tomcat_standard_context_xml
   template:
     src: context.xml.j2
@@ -136,7 +126,7 @@
     mode: 0640
 
 - name: Install custom context.xml
-  when: "{{ tomcat_use_custom_context_xml }}"
+  when: tomcat_use_custom_context_xml
   register: __tomcat_custom_context_xml
   copy:
     src: "{{ tomcat_custom_context_xml }}"
@@ -146,7 +136,7 @@
     mode: 0640
 
 - name: Install standard tomcat-users.xml
-  when: "{{ not tomcat_use_custom_tomcat_users_xml }}"
+  when: not tomcat_use_custom_tomcat_users_xml
   register: __tomcat_standard_users_xml
   template:
     src: tomcat-users.xml.j2
@@ -156,21 +146,11 @@
     mode: 0640
 
 - name: Install custom tomcat-users.xml
-  when: "{{ tomcat_use_custom_context_xml }}"
+  when: tomcat_use_custom_tomcat_users_xml
   register: __tomcat_custom_users_xml
   copy:
     src: "{{ tomcat_custom_tomcat_users_xml }}"
     dest: "{{ tomcat_instance_path }}/conf/tomcat-users.xml"
-    owner: "{{ tomcat_user_name }}"
-    group: "{{ tomcat_user_group }}"
-    mode: 0640
-
-- name: Install custom manager app context.xml
-  when: "{{ tomcat_use_custom_manager_context_xml }}"
-  register: __tomcat_custom_manager_context_xml
-  copy:
-    src: "{{ tomcat_custom_manager_context_xml }}"
-    dest: "{{ tomcat_instance_path }}/conf/context.xml"
     owner: "{{ tomcat_user_name }}"
     group: "{{ tomcat_user_group }}"
     mode: 0640
@@ -212,10 +192,27 @@
     state: started
     daemon_reload: yes
 
+- name: Wait for Manager to Unpack Before Placing New Context
+  when:
+    - tomcat_use_custom_manager_context_xml
+    - __tomcat_start_service|changed
+  pause:
+    seconds: 10
+
+- name: Install custom manager app context.xml
+  when: tomcat_use_custom_manager_context_xml
+  register: __tomcat_custom_manager_context_xml
+  copy:
+    src: "{{ tomcat_custom_manager_context_xml }}"
+    dest: "{{ tomcat_instance_path }}/webapps/manager/META-INF/context.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
+
 - name: Restart Service if Changed
   command: /bin/true
   notify: Restart Tomcat
-  when: "{{ not __tomcat_start_service.changed and
+  when: not __tomcat_start_service.changed and
     ( __tomcat_standard_server_xml.changed or
     __tomcat_custom_server_xml.changed or
     __tomcat_standard_web_xml.changed or
@@ -226,4 +223,4 @@
     __tomcat_custom_users_xml.changed or
     __tomcat_custom_manager_context_xml.changed or
     __tomcat_install_libs.changed or
-    __tomcat_install_webapps.changed ) }}"
+    __tomcat_install_webapps.changed )
