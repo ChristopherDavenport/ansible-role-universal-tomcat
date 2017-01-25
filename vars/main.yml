@@ -2,7 +2,7 @@
 # vars file for universal-tomcat
 
 # Tomcat major version
-tomcat_version_major: "{{ tomcat_version.1 }}"
+tomcat_version_major: "{{ tomcat_version.0 }}"
 tomcat_tar_archive: "apache-tomcat-{{ tomcat_version }}.tar.gz"
 
 tomcat_instance_directories:
