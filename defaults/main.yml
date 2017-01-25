@@ -52,7 +52,14 @@ tomcat_users: []
   # - name: tomcat
   #   password: tomcat
   #   roles: "manager-gui,admin-gui"
+  #
 
+# This Edits And Allows Ansible To Configure These
+# Otherwise it does a default install
+tomcat_configure: true
+tomcat_configure_configs: "{{ tomcat_configure }}"
+tomcat_configure_libs: "{{ tomcat_configure }}"
+tomcat_configure_webapps: "{{ tomcat_configure }}"
 
 # These are in fileglob notation
 # i.e. /opt/instance/libs/*
