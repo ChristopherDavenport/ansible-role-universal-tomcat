@@ -76,7 +76,9 @@
     state: link
 
 - name: Install standard server.xml
-  when: not tomcat_use_custom_server_xml
+  when:
+    - not tomcat_use_custom_server_xml
+    - tomcat_configure_configs
   register: __tomcat_standard_server_xml
   template:
     src: server.xml.j2
@@ -86,7 +88,9 @@
     mode: 0640
 
 - name: Install custom server.xml
-  when: tomcat_use_custom_server_xml
+  when:
+    - tomcat_use_custom_server_xml
+    - tomcat_configure_configs
   register: __tomcat_custom_server_xml
   copy:
     src: "{{ tomcat_custom_server_xml }}"
@@ -96,7 +100,9 @@
     mode: 0640
 
 - name: Install standard web.xml
-  when: not tomcat_use_custom_web_xml
+  when:
+    - not tomcat_use_custom_web_xml
+    - tomcat_configure_configs
   register: __tomcat_standard_web_xml
   template:
     src: web.xml.j2
@@ -106,7 +112,9 @@
     mode: 0640
 
 - name: Install custom web.xml
-  when: tomcat_use_custom_web_xml
+  when:
+    - tomcat_use_custom_web_xml
+    - tomcat_configure_configs
   register: __tomcat_custom_web_xml
   copy:
     src: "{{ tomcat_custom_web_xml }}"
@@ -116,7 +124,9 @@
     mode: 0640
 
 - name: Install standard context.xml
-  when: not tomcat_use_custom_context_xml
+  when:
+    - not tomcat_use_custom_context_xml
+    - tomcat_configure_configs
   register: __tomcat_standard_context_xml
   template:
     src: context.xml.j2
@@ -126,7 +136,9 @@
     mode: 0640
 
 - name: Install custom context.xml
-  when: tomcat_use_custom_context_xml
+  when:
+    - tomcat_use_custom_context_xml
+    - tomcat_configure_configs
   register: __tomcat_custom_context_xml
   copy:
     src: "{{ tomcat_custom_context_xml }}"
@@ -136,7 +148,9 @@
     mode: 0640
 
 - name: Install standard tomcat-users.xml
-  when: not tomcat_use_custom_tomcat_users_xml
+  when:
+    - not tomcat_use_custom_tomcat_users_xml
+    - tomcat_configure_configs
   register: __tomcat_standard_users_xml
   template:
     src: tomcat-users.xml.j2
@@ -158,7 +172,9 @@
 - name: Install Extra Libraries
   register: __tomcat_install_libs
   with_fileglob: "{{ tomcat_extra_libs_path }}"
-  when: '{{ tomcat_extra_libs_path not in (None, "") }}'
+  when:
+    - '{{ tomcat_extra_libs_path not in (None, "") }}'
+    - tomcat_configure_libs
   copy:
     src: "{{ item }}"
     dest: "{{ tomcat_instance_path }}/lib/"
@@ -169,7 +185,9 @@
 - name: Install WebApps
   register: __tomcat_install_webapps
   with_fileglob: "{{ tomcat_webapps_path }}"
-  when: tomcat_webapps_path != ""
+  when:
+    - tomcat_webapps_path != ""
+    - tomcat_configure_webapps
   copy:
     src: "{{ item }}"
     dest: "{{ tomcat_instance_path }}/webapps/"
