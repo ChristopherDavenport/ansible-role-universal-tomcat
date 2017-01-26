@@ -10,8 +10,18 @@ Environment=TOMCAT_JAVA_HOME={{ java_home }}
 
 Environment='CATALINA_HOME={{ tomcat_catalina_home }}'
 Environment='CATALINA_BASE={{ tomcat_catalina_home }}'
-Environment={% if tomcat_catalina_opts not in (None, "") %}CATALINA_OPTS={{ tomcat_catalina_opts }}{% else %}'CATALINA_OPTS=-Xms512M -Xmx2048M -server -XX:+UseParallelGC'{% endif %}
-Environment={% if tomcat_java_opts not in (None, "") %}JAVA_OPTS={{ tomcat_java_opts }}{% else %}'JAVA_OPTS=-Djava.awt.headless=true'{% endif %}
+
+{% if tomcat_catalina_opts not in (None, "") %}
+Environment=CATALINA_OPTS={{ tomcat_catalina_opts }}
+{% else %}
+Environment=CATALINA_OPTS=-Xms512M -Xmx2048M -server -XX:+UseParallelGC'
+{% endif %}
+
+{% if tomcat_java_opts not in (None, "") %}
+Environment=JAVA_OPTS={{ tomcat_java_opts }}
+{% else %}
+Environment='JAVA_OPTS=-Djava.awt.headless=true'
+{% endif %}
 
 ExecStart={{ tomcat_instance_path }}/bin/startup.sh
 ExecStop={{ tomcat_instance_path }}/bin/shutdown.sh

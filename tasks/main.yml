@@ -198,7 +198,7 @@
 - name: Install Service
   register: __tomcat_service
   template:
-    src: systemd_service.j2
+    src: tomcat.service.j2
     dest: /etc/systemd/system/tomcat.service
     mode: 0644
 
