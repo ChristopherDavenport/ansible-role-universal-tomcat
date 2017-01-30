@@ -171,7 +171,7 @@
 
 - name: Install Extra Libraries
   register: __tomcat_install_libs
-  with_fileglob: "{{ tomcat_extra_libs_path }}"
+  with_items: "{{ tomcat_extra_libs_path }}"
   when:
     - '{{ tomcat_extra_libs_path not in (None, "") }}'
     - tomcat_configure_libs
@@ -180,7 +180,7 @@
     dest: "{{ tomcat_instance_path }}/lib/"
     owner: "{{ tomcat_user_name }}"
     group: "{{ tomcat_user_group }}"
-    mode: 0644
+    mode: 0640
 
 - name: Install WebApps
   register: __tomcat_install_webapps
