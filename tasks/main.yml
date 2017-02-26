@@ -173,7 +173,6 @@
   register: __tomcat_install_libs
   with_items: "{{ tomcat_extra_libs_path }}"
   when:
-    - '{{ tomcat_extra_libs_path not in (None, "") }}'
     - tomcat_configure_libs
   copy:
     src: "{{ item }}"
@@ -184,9 +183,8 @@
 
 - name: Install WebApps
   register: __tomcat_install_webapps
-  with_fileglob: "{{ tomcat_webapps_path }}"
+  with_items: "{{ tomcat_webapps_path }}"
   when:
-    - tomcat_webapps_path != ""
     - tomcat_configure_webapps
   copy:
     src: "{{ item }}"

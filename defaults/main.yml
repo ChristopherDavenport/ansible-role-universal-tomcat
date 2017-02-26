@@ -61,10 +61,9 @@ tomcat_configure_configs: "{{ tomcat_configure }}"
 tomcat_configure_libs: "{{ tomcat_configure }}"
 tomcat_configure_webapps: "{{ tomcat_configure }}"
 
-# These are in fileglob notation
-# i.e. /opt/instance/libs/*
-tomcat_extra_libs_path: ""
-tomcat_webapps_path: ""
+# These copy files across and will use basename
+tomcat_extra_libs_path: []
+tomcat_webapps_path: []
 
 # Strings That Allow you to modify your
 # tomcat instance in a predictable fashion.
