@@ -33,11 +33,11 @@ env:
   #   version: "9.0.0.M11"
   #   init: /sbin/init
   #   run_opts: ""
-  - distribution: Debian
-    distribution_version: jessie
-    version: "9.0.0.M11"
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Debian
+  #   distribution_version: jessie
+  #   version: "9.0.0.M11"
+  #   init: /lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: Fedora
   #   distribution_version: "24"
   #   version: "9.0.0.M11"
@@ -78,11 +78,11 @@ env:
   #   version: "8.5.6"
   #   init: /sbin/init
   #   run_opts: ""
-  - distribution: Debian
-    distribution_version: jessie
-    version: "8.5.6"
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Debian
+  #   distribution_version: jessie
+  #   version: "8.5.6"
+  #   init: /lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: Fedora
   #   distribution_version: "24"
   #   version: "8.5.6"
@@ -123,11 +123,11 @@ env:
   #   version: "8.0.38"
   #   init: /sbin/init
   #   run_opts: ""
-  - distribution: Debian
-    distribution_version: jessie
-    version: "8.0.38"
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Debian
+  #   distribution_version: jessie
+  #   version: "8.0.38"
+  #   init: /lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: Fedora
   #   distribution_version: "24"
   #   version: "8.0.38"
@@ -168,11 +168,11 @@ env:
   #   version: "7.0.72"
   #   init: /sbin/init
   #   run_opts: ""
-  - distribution: Debian
-    distribution_version: jessie
-    version: "7.0.72"
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Debian
+  #   distribution_version: jessie
+  #   version: "7.0.72"
+  #   init: /lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: Fedora
   #   distribution_version: "24"
   #   version: "7.0.72"
@@ -213,11 +213,11 @@ env:
   #   version: "6.0.47"
   #   init: /sbin/init
   #   run_opts: ""
-  - distribution: Debian
-    distribution_version: jessie
-    version: "6.0.47"
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: Debian
+  #   distribution_version: jessie
+  #   version: "6.0.47"
+  #   init: /lib/systemd/systemd
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: Fedora
   #   distribution_version: "24"
   #   version: "6.0.47"
