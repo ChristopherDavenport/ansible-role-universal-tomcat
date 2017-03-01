@@ -27,7 +27,7 @@ ExecStart={{ tomcat_instance_path }}/bin/startup.sh
 ExecStop={{ tomcat_instance_path }}/bin/shutdown.sh
 
 User={{ tomcat_user_name }}
-Group=tomcat
+Group={{ tomcat_user_group }}
 
 [Install]
 WantedBy=multi-user.target
