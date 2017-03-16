@@ -48,6 +48,16 @@ env:
     version: "9.0.0.M11"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "9.0.0.M11"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: OracleLinux
+  #   distribution_version: "6"
+  #   version: "9.0.0.M11"
+  #   init: /sbin/init
+  #   run_opts: ""
   # - distribution: Ubuntu
   #   distribution_version: yakkety
   #   version: "8.5.6"
@@ -93,6 +103,16 @@ env:
     version: "8.5.6"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "8.5.6"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: OracleLinux
+  #   distribution_version: "6"
+  #   version: "8.5.6"
+  #   init: /sbin/init
+  #   run_opts: ""
   # - distribution: Ubuntu
   #   distribution_version: yakkety
   #   version: "8.0.38"
@@ -138,6 +158,16 @@ env:
     version: "8.0.38"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "8.0.38"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: OracleLinux
+  #   distribution_version: "6"
+  #   version: "8.0.38"
+  #   init: /sbin/init
+  #   run_opts: ""
   # - distribution: Ubuntu
   #   distribution_version: yakkety
   #   version: "7.0.72"
@@ -183,6 +213,16 @@ env:
     version: "7.0.72"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "7.0.72"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: OracleLinux
+  #   distribution_version: "6"
+  #   version: "7.0.72"
+  #   init: /sbin/init
+  #   run_opts: ""
   # - distribution: Ubuntu
   #   distribution_version: yakkety
   #   version: "6.0.47"
@@ -228,6 +268,16 @@ env:
     version: "6.0.47"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "6.0.47"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: OracleLinux
+  #   distribution_version: "6"
+  #   version: "6.0.47"
+  #   init: /sbin/init
+  #   run_opts: ""
 
 before_install:
   # Pull container.
