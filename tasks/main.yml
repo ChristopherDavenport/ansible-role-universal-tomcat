@@ -202,11 +202,10 @@
 
 - name: Start Service
   register: __tomcat_start_service
-  systemd:
+  service:
     name: tomcat
     enabled: yes
     state: started
-    daemon_reload: yes
 
 - name: Wait for Manager to Unpack Before Placing New Context
   when:
