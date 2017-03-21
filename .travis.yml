@@ -108,6 +108,11 @@ env:
     version: "8.5.6"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: opensuse
+    distribution_version: "42.2"
+    version: "8.5.6"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: OracleLinux
   #   distribution_version: "6"
   #   version: "8.5.6"
@@ -163,6 +168,11 @@ env:
     version: "8.0.38"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: opensuse
+    distribution_version: "42.2"
+    version: "8.0.38"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: OracleLinux
   #   distribution_version: "6"
   #   version: "8.0.38"
@@ -218,6 +228,11 @@ env:
     version: "7.0.72"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: opensuse
+    distribution_version: "42.2"
+    version: "7.0.72"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: OracleLinux
   #   distribution_version: "6"
   #   version: "7.0.72"
@@ -270,6 +285,11 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: OracleLinux
     distribution_version: "7"
+    version: "6.0.47"
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distribution: opensuse
+    distribution_version: "42.2"
     version: "6.0.47"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
