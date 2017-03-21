@@ -304,22 +304,22 @@ before_install:
   - 'docker pull ansiblecheck/ansiblecheck:${distribution,,}-${distribution_version}'
   - container_id=$(mktemp)
   # Start The Built Container In The Background
-  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
+  - 'docker run--detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
 
 install:
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install ChristopherDavenport.universal-java'
+  - 'docker exec -it "$(cat ${container_id})" env TERM=xterm ansible-galaxy install ChristopherDavenport.universal-java'
 
 script:
 
   # Ansible syntax check.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
+  - 'docker exec -it "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
 
   # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
+  - 'docker exec -it "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
 
   # Test Idempotence
   - idempotence=$(mktemp)
-  - docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml | tee -a ${idempotence}
+  - docker exec -it "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml | tee -a ${idempotence}
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
