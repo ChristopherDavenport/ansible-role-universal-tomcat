@@ -193,6 +193,12 @@
     group: "{{ tomcat_user_group }}"
     mode: 0755
 
+- name: Location of SystemD files
+  shell: find / -name "*systemd*"
+  register: __tomcat_systemd
+
+- debug: var=__tomcat_systemd
+
 - name: Install Service
   register: __tomcat_service
   template:
