@@ -9,10 +9,6 @@
     - tar
     - wget
 
-# Here We Import The Variables For Versions like checksum
-- name: Include Variables For Specific Tomcat Version
-  include_vars: "tomcat-{{ tomcat_version }}.yml"
-
 # Here We Create The Group and User
 - name: Create Tomcat Group
   group:
@@ -47,7 +43,7 @@
   get_url:
     dest: "{{ tomcat_tmp_storage }}"
     url: "{{ item }}/tomcat-{{ tomcat_version_major }}/v{{ tomcat_version }}/bin/{{ tomcat_tar_archive }}"
-    checksum: "{{ tomcat_checksum }}"
+    checksum: "{{ tomcat_version_specific[tomcat_version].checksum }}"
 
 - name: Unarchive Tomcat
   when: not __tomcat_exists.stat.exists
