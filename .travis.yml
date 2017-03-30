@@ -10,7 +10,7 @@ env:
   #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Ubuntu
     distribution_version: xenial
-    version: "9.0.0.M11"
+    version: "9.0.0.M18"
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: Ubuntu
@@ -25,7 +25,7 @@ env:
   #   run_opts: ""
   - distribution: EL
     distribution_version: "7"
-    version: "9.0.0.M11"
+    version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: EL
@@ -45,12 +45,12 @@ env:
   #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: Fedora
     distribution_version: "23"
-    version: "9.0.0.M11"
+    version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: OracleLinux
     distribution_version: "7"
-    version: "9.0.0.M11"
+    version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   # - distribution: OracleLinux
