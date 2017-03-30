@@ -3,8 +3,8 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-                      http://xmlns.jcp.org/xml/ns/javaee/web-app_{{ tomcat_web_xml_schema_version|replace('.', '_') }}.xsd"
-  version="{{ tomcat_web_xml_schema_version }}">
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_{{ tomcat_version_specific[tomcat_version].web_xml_schema_version|replace('.', '_') }}.xsd"
+  version="{{ tomcat_version_specific[tomcat_version].web_xml_schema_version }}">
 
     <servlet>
         <servlet-name>default</servlet-name>
