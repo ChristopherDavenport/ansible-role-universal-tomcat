@@ -7,3 +7,15 @@
       when: ansible_os_family == 'Debian'
   roles:
     - role_under_test
+  post_tasks:
+  - name: Wait For Service to Come Online
+    pause:
+      seconds: 10
+  - name: Check Manager Application
+    uri:
+      url: http://0.0.0.0:8080/manager
+      return_content: yes
+      follow_redirects: all
+    register: __tomcat_webpage
+  - name: Debug Webpage
+    debug: var=__tomcat_webpage
