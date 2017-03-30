@@ -24,8 +24,8 @@
       follow_redirects: all
       user: "{{ test_user }}"
       password: "{{ test_user }}"
-    register: __tomcat_webpage
-    when: tomcat_version != "6.0.47"
-  - name: Debug Webpage
-    debug: var=__tomcat_webpage
-    when: tomcat_version != "6.0.47"
+  - name: Output Tomcat Log
+    command: cat {{ tomcat_catalina_home }}/logs/catalina.out
+    register: __tomcat_catalina_out
+    changed_when: false
+  - debug: var=__tomcat_catalina_out
