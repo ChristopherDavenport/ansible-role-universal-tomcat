@@ -2,7 +2,7 @@
 # tasks file for universal-tomcat - installation of the service tomcat (only in recent version)
 
 - name: Install Service
-  register: __tomcat_service
+  register: __tomcat_service_systemd
   template:
     src: tomcat.service.j2
     dest: /etc/systemd/system/tomcat.service
