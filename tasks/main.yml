@@ -193,12 +193,15 @@
     group: "{{ tomcat_user_group }}"
     mode: 0755
 
+- name: Check if systemd is present
+  stat:
+    path: "/bin/systemd"
+  register: __systemd_exists
+
 - name: Install Tomcat Service with systemd (New Version)
   include: service_systemd_tomcat.yml
-  tags:
-    - new_version
+  when: __systemd_exists.stat.exists
 
-- name: Install Tomcat Service with systemd (Old Version)
+- name: Install Tomcat Service with initctl (Old Version)
   include: service_ctl_tomcat.yml
-  tags:
-    - old_version
+  when: not __systemd_exists.stat.exists
