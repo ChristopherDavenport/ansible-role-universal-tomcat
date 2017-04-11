@@ -195,13 +195,13 @@
 
 - name: Check if systemd is present
   stat:
-    path: "/bin/systemd"
-  register: __systemd_exists
+    path: "/sbin/init"
+  register: __stat_init
 
-- name: Install Tomcat Service with systemd (New Version)
+- name: Install Tomcat Service with systemd
   include: service_systemd_tomcat.yml
-  when: __systemd_exists.stat.exists
+  when: __stat_init.stat.islnk and ( __stat_init.stat.lnk_source is defined ) and ( "systemd" in __stat_init.stat.lnk_source )
 
-- name: Install Tomcat Service with initctl (Old Version)
+- name: Install Tomcat Service with initctl
   include: service_ctl_tomcat.yml
-  when: not __systemd_exists.stat.exists
+  when: not __stat_init.stat.islnk
