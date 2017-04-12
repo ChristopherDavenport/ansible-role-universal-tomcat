@@ -1,5 +1,11 @@
 ---
 - hosts: localhost
+  vars:
+    test_user: tomcat
+    tomcat_users:
+      - name: "{{ test_user }}"
+        password: "{{ test_user }}"
+        roles: "manager-gui,admin-gui"
   pre_tasks:
     - name: Update apt cache.
       apt: update_cache=yes
@@ -7,3 +13,19 @@
       when: ansible_os_family == 'Debian'
   roles:
     - role_under_test
+  post_tasks:
+  - name: Wait For Service to Come Online
+    pause:
+      seconds: 10
+  - name: Check Manager Application
+    uri:
+      url: http://0.0.0.0:8080/manager
+      return_content: yes
+      follow_redirects: all
+      user: "{{ test_user }}"
+      password: "{{ test_user }}"
+  - name: Output Tomcat Log
+    command: cat {{ tomcat_catalina_home }}/logs/catalina.out
+    register: __tomcat_catalina_out
+    changed_when: false
+  - debug: var=__tomcat_catalina_out
