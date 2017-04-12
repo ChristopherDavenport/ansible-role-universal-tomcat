@@ -5,9 +5,6 @@ description "Tomcat Server"
   respawn
   respawn limit 10 5
 
-  setuid {{ tomcat_user_name }}
-  setgid {{ tomcat_user_group }}
-
   env JAVA_HOME={{ java_home }}
   env CATALINA_HOME={{ tomcat_catalina_home }}
 
