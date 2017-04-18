@@ -1,13 +1,7 @@
 ---
 # tasks file for universal-tomcat - start tomcat with startup.sh script
 
-- name: Check if it's a docker container
-  command: grep docker /proc/self/cgroup
-  register: __is_docker_container
-  ignore_errors: True
-
 - name: Install Service
-  when: __is_docker_container.stdout == ""
   register: __tomcat_service_ctl
   template:
     src: tomcat.conf.j2
@@ -26,7 +20,3 @@
     name: tomcat
     state: started
     enabled: yes
-
-- name: Start service tomcat with start-stop-daemon command
-  command: start-stop-daemon --exec {{ tomcat_instance_path }}/bin/startup.sh --start
-  when: __is_docker_container.stdout != ""
