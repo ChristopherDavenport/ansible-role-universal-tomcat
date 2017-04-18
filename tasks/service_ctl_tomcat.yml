@@ -20,3 +20,4 @@
     name: tomcat
     state: started
     enabled: yes
+    pattern: "{{ tomcat_instance_path }}/bin/startup.sh"
