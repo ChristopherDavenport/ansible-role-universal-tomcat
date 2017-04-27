@@ -88,7 +88,7 @@
     - tomcat_use_custom_server_xml
     - tomcat_configure_configs
   register: __tomcat_custom_server_xml
-  copy:
+  template:
     src: "{{ tomcat_custom_server_xml }}"
     dest: "{{ tomcat_instance_path }}/conf/server.xml"
     owner: "{{ tomcat_user_name }}"
@@ -112,7 +112,7 @@
     - tomcat_use_custom_web_xml
     - tomcat_configure_configs
   register: __tomcat_custom_web_xml
-  copy:
+  template:
     src: "{{ tomcat_custom_web_xml }}"
     dest: "{{ tomcat_instance_path }}/conf/web.xml"
     owner: "{{ tomcat_user_name }}"
@@ -136,7 +136,7 @@
     - tomcat_use_custom_context_xml
     - tomcat_configure_configs
   register: __tomcat_custom_context_xml
-  copy:
+  template:
     src: "{{ tomcat_custom_context_xml }}"
     dest: "{{ tomcat_instance_path }}/conf/context.xml"
     owner: "{{ tomcat_user_name }}"
@@ -158,7 +158,7 @@
 - name: Install custom tomcat-users.xml
   when: tomcat_use_custom_tomcat_users_xml
   register: __tomcat_custom_users_xml
-  copy:
+  template:
     src: "{{ tomcat_custom_tomcat_users_xml }}"
     dest: "{{ tomcat_instance_path }}/conf/tomcat-users.xml"
     owner: "{{ tomcat_user_name }}"
