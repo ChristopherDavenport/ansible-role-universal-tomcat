@@ -25,26 +25,26 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 # Init
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "8.5.12"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "8.5.12"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: EL
-    distribution_version: "6"
-    version: "8.5.12"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: OracleLinux
-    distribution_version: "6"
-    version: "8.5.12"
-    init: /sbin/init
-    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: trusty
+#    version: "8.5.12"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: precise
+#    version: "8.5.12"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: EL
+#    distribution_version: "6"
+#    version: "8.5.12"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: OracleLinux
+#    distribution_version: "6"
+#    version: "8.5.12"
+#    init: /sbin/init
+#    run_opts: ""
 
 # Tomcat 8.0 - now superseded by 8.5
 # SystemD
@@ -69,26 +69,26 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 # Init
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "8.0.42"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "8.0.42"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: EL
-    distribution_version: "6"
-    version: "8.0.42"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: OracleLinux
-    distribution_version: "6"
-    version: "8.0.42"
-    init: /sbin/init
-    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: trusty
+#    version: "8.0.42"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: precise
+#    version: "8.0.42"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: EL
+#    distribution_version: "6"
+#    version: "8.0.42"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: OracleLinux
+#    distribution_version: "6"
+#    version: "8.0.42"
+#    init: /sbin/init
+#    run_opts: ""
 
 # Tomcat 7 Support
 # SystemD
@@ -113,26 +113,26 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 # Init
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "7.0.76"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "7.0.76"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: EL
-    distribution_version: "6"
-    version: "7.0.76"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: OracleLinux
-    distribution_version: "6"
-    version: "7.0.76"
-    init: /sbin/init
-    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: trusty
+#    version: "7.0.76"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: precise
+#    version: "7.0.76"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: EL
+#    distribution_version: "6"
+#    version: "7.0.76"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: OracleLinux
+#    distribution_version: "6"
+#    version: "7.0.76"
+#    init: /sbin/init
+#    run_opts: ""
 
 # Tomcat 9 Current Milestone
 # SystemD
@@ -157,26 +157,26 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 # Init
-  - distribution: Ubuntu
-    distribution_version: trusty
-    version: "9.0.0.M18"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Ubuntu
-    distribution_version: precise
-    version: "9.0.0.M18"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: EL
-    distribution_version: "6"
-    version: "9.0.0.M18"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: OracleLinux
-    distribution_version: "6"
-    version: "9.0.0.M18"
-    init: /sbin/init
-    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: trusty
+#    version: "9.0.0.M18"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: Ubuntu
+#    distribution_version: precise
+#    version: "9.0.0.M18"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: EL
+#    distribution_version: "6"
+#    version: "9.0.0.M18"
+#    init: /sbin/init
+#    run_opts: ""
+#  - distribution: OracleLinux
+#    distribution_version: "6"
+#    version: "9.0.0.M18"
+#    init: /sbin/init
+#    run_opts: ""
 
 before_install:
   # Pull container.
