@@ -1,0 +1,50 @@
+---
+# tasks file for universal-tomcat - installation of the service tomcat (only in recent version)
+
+- name: Install Service
+  register: __tomcat_service_systemd
+  template:
+    src: tomcat.service.j2
+    dest: /etc/systemd/system/tomcat.service
+    mode: 0644
+
+- name: Start Service
+  register: __tomcat_start_service
+  systemd:
+    name: tomcat
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Wait for Manager to Unpack Before Placing New Context
+  when:
+    - tomcat_use_custom_manager_context_xml
+    - __tomcat_start_service|changed
+  pause:
+    seconds: 10
+
+- name: Install custom manager app context.xml
+  when: tomcat_use_custom_manager_context_xml
+  register: __tomcat_custom_manager_context_xml
+  copy:
+    src: "{{ tomcat_custom_manager_context_xml }}"
+    dest: "{{ tomcat_instance_path }}/webapps/manager/META-INF/context.xml"
+    owner: "{{ tomcat_user_name }}"
+    group: "{{ tomcat_user_group }}"
+    mode: 0640
+
+- name: Restart Service if Changed
+  command: /bin/true
+  notify: Restart Tomcat
+  when: not __tomcat_start_service.changed and
+    ( __tomcat_standard_server_xml.changed or
+    __tomcat_custom_server_xml.changed or
+    __tomcat_standard_web_xml.changed or
+    __tomcat_custom_web_xml.changed or
+    __tomcat_standard_context_xml.changed or
+    __tomcat_custom_context_xml.changed or
+    __tomcat_standard_users_xml.changed or
+    __tomcat_custom_users_xml.changed or
+    __tomcat_custom_manager_context_xml.changed or
+    __tomcat_install_libs.changed or
+    __tomcat_install_webapps.changed )

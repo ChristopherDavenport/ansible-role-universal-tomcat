@@ -16,7 +16,7 @@
   post_tasks:
   - name: Wait For Service to Come Online
     pause:
-      seconds: 10
+      seconds: 20
   - name: Check Manager Application
     uri:
       url: http://0.0.0.0:8080/manager

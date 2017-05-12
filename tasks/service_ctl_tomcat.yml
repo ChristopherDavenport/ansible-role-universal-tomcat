@@ -1,0 +1,22 @@
+---
+# tasks file for universal-tomcat - start tomcat with startup.sh script
+
+- name: Install Service
+  register: __tomcat_service_ctl
+  template:
+    src: tomcat.conf.j2
+    dest: /etc/init/tomcat.conf
+    mode: 0644
+
+- name: Reload Service
+  when: __tomcat_service_ctl|changed
+  service:
+    name: tomcat
+    state: reloaded
+
+- name: Start Service
+  when: __tomcat_service_ctl|changed
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
