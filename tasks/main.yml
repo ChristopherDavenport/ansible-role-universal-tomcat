@@ -189,6 +189,60 @@
     group: "{{ tomcat_user_group }}"
     mode: 0755
 
+- name: Install Apache Portable Runtime Integration
+  unarchive:
+    remote_src: yes
+    src: "{{ tomcat_instance_path }}/bin/tomcat-native.tar.gz"
+    dest: "{{ tomcat_instance_path }}/bin"
+    keep_newer: yes
+
+- name: Ouput Files
+  register: __tomcat_bin_files
+  command: >
+    ls
+    chdir="{{ tomcat_instance_path }}/bin"
+
+- debug: var=__tomcat_bin_files.stdout_lines
+
+- name: Configure APR
+  # when: not __apr_installed
+  register: __apr_configure
+  command: >
+    ./configure --with-apr=/usr/local/apr --with-java-home={{ java_home }}
+    chdir="{{ tomcat_instance_path }}/bin/tomcat-native-1.2.10-src"
+
+- name: Debug Output of APR Configure
+  debug: var=__apr_configure.stdout_lines
+  # when:
+  #   - apr_debug
+  #   - not __apr_installed
+
+- name: Make APR
+  # when: not __apr_installed
+  register: __apr_make
+  make:
+    chdir: "{{ tomcat_instance_path }}/bin/tomcat-native-1.2.10-src"
+
+- name: Debug Output of Make APR
+  debug: var=__apr_make.stdout_lines
+  # when:
+  #   - apr_debug
+  #   - not __apr_installed
+
+- name: Make Install APR
+  # when: not __apr_installed
+  register: __apr_make_install
+  make:
+    chdir: "{{ tomcat_instance_path }}/bin/tomcat-native-1.2.10-src"
+    target: install
+  become: yes
+
+- name: Debug Output of Make Install APR
+  debug: var=__apr_make_install.stdout_lines
+  # when:
+  #   - apr_debug
+  #   - not __apr_installed
+
 - name: Check if systemd is present
   stat:
     path: "/sbin/init"
