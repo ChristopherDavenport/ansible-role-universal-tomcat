@@ -198,7 +198,7 @@
 
 - name: Set Unpacked Dir Location
   set_fact:
-    __tomcat_native_unpacked_dir: "{{tomcat_instance_path}}/bin/tomcat-native-{{ tomcat_version_specific[tomcat_version].tomcat_native_version }}-src"
+    __tomcat_native_unpacked_dir: "{{tomcat_instance_path}}/bin/tomcat-native-{{ tomcat_version_specific[tomcat_version].tomcat_native_version }}-src/jni/native"
 
 - debug: var=__tomcat_native_unpacked_dir
 
