@@ -196,26 +196,26 @@
     dest: "{{ tomcat_instance_path }}/bin"
     keep_newer: yes
 
-- name: Ouput Files
-  register: __tomcat_bin_files
-  command: >
-    ls
-    chdir="{{ tomcat_instance_path }}/bin"
-
-- debug: var=__tomcat_bin_files.stdout_lines
-
 - name: Set Unpacked Dir Location
   set_fact:
     __tomcat_native_unpacked_dir: "{{tomcat_instance_path}}/bin/tomcat-native-{{ tomcat_version_specific[tomcat_version].tomcat_native_version }}-src"
 
 - debug: var=__tomcat_native_unpacked_dir
 
+- name: Ouput Files
+  register: __tomcat_bin_files
+  command: >
+    ls
+    chdir={{ __tomcat_native_unpacked_dir }}
+
+- debug: var=__tomcat_bin_files.stdout_lines
+
 - name: Configure APR
   # when: not __apr_installed
   register: __tomcat_apr_configure
   command: >
     ./configure --with-apr=/usr/local/apr --with-java-home={{ java_home }}
-    chdir="{{ __tomcat_native_unpacked_dir }}"
+    chdir={{ __tomcat_native_unpacked_dir }}
 
 - name: Debug Output of APR Configure
   debug: var=__tomcat_apr_configure.stdout_lines
