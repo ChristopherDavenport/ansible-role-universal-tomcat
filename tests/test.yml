@@ -2,6 +2,7 @@
 - hosts: localhost
   vars:
     test_user: tomcat
+    tomcat_debug: true
     tomcat_users:
       - name: "{{ test_user }}"
         password: "{{ test_user }}"

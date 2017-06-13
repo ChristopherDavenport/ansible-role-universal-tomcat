@@ -54,6 +54,8 @@ tomcat_users: []
   #   roles: "manager-gui,admin-gui"
   #
 
+tomcat_debug: false
+
 # This Edits And Allows Ansible To Configure These
 # Otherwise it does a default install
 tomcat_configure: true
