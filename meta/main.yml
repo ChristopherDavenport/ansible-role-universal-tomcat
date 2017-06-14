@@ -30,5 +30,5 @@ galaxy_info:
 
 dependencies:
   - ChristopherDavenport.universal-java
-  - ChristopherDavenport.apache-portable-runtime
   - ChristopherDavenport.openssl
+  - ChristopherDavenport.apache-portable-runtime
