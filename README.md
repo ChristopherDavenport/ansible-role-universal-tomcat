@@ -78,7 +78,7 @@ tomcat_configure_webapps: "{{ tomcat_configure }}"
 
 # These copy files across and will use basename
 tomcat_extra_libs_path: ""
-tomcat_webapps_path: ""
+tomcat_webapps_path: []
 
 # Strings That Allow you to modify your
 # tomcat instance in a predictable fashion.
