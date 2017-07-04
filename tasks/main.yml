@@ -236,6 +236,7 @@
 - name: Debug Output of Make APR
   debug: var=__tomcat_apr_make.stdout_lines
   when:
+    - tomcat_use_apr
     - tomcat_debug
     - not __tomcat_apr_dir.stat.exists
 
