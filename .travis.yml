@@ -7,14 +7,6 @@ env:
     - ANSIBLE_ROLE_LOCATION: "/etc/ansible/roles/role_under_test"
     - playbook: test.yml
   matrix:
-#### No APR Checks
-  - distribution: Ubuntu
-    distribution_version: xenial
-    version: "8.5.12"
-    init: /lib/systemd/systemd
-    run_opts: "${SYSTEMD_OPTS}"
-    playbook: no_apr.yml
-
 
 # Stable Release Versions - 8.5
 # SystemD
@@ -38,27 +30,6 @@ env:
     version: "8.5.12"
     init: /usr/lib/systemd/systemd
     run_opts: "${SYSTEMD_OPTS}"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
 
 # Tomcat 8.0 - now superseded by 8.5
 # SystemD
@@ -82,27 +53,6 @@ env:
     version: "8.0.42"
     init: /usr/lib/systemd/systemd
     run_opts: "${SYSTEMD_OPTS}"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
 
 # Tomcat 7 Support
 # SystemD
@@ -126,27 +76,6 @@ env:
     version: "7.0.76"
     init: /usr/lib/systemd/systemd
     run_opts: "${SYSTEMD_OPTS}"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
 
 # Tomcat 9 Current Milestone
 # SystemD
@@ -170,29 +99,34 @@ env:
     version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
     run_opts: "${SYSTEMD_OPTS}"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
 
-
+# NO APR Installations
+# Stable Release Versions - 8.5
+# SystemD
+  - distribution: Ubuntu
+    distribution_version: xenial
+    version: "8.5.12"
+    init: /lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+  - distribution: EL
+    distribution_version: "7"
+    version: "8.5.12"
+    init: /usr/lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+  - distribution: Fedora
+    distribution_version: "23"
+    version: "8.5.12"
+    init: /usr/lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "8.5.12"
+    init: /usr/lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
 
 before_install:
   # Pull container.
