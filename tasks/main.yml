@@ -213,7 +213,7 @@
   register: __tomcat_apr_configure
   command: >
     ./configure
-    --with-apr=/usr/local/apr
+    --with-apr={{ apr_install_location }}
     --with-java-home={{ java_home }}
     --with-ssl={{ openssl_install_location }}
     --prefix={{ tomcat_catalina_home }}
