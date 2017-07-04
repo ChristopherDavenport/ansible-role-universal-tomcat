@@ -6,7 +6,9 @@ description "Tomcat Server"
   respawn limit 10 5
 
   env JAVA_HOME={{ java_home }}
+  env CATALINA_BASE={{ tomcat_catalina_home }}
   env CATALINA_HOME={{ tomcat_catalina_home }}
+  env LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{{ apr_install_location }}/lib:{{ tomcat_catalina_home}}/lib'
 
   {% if tomcat_java_opts not in (None, "") %}
   env JAVA_OPTS={{ tomcat_java_opts }}

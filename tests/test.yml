@@ -29,4 +29,4 @@
     command: cat {{ tomcat_catalina_home }}/logs/catalina.out
     register: __tomcat_catalina_out
     changed_when: false
-  - debug: var=__tomcat_catalina_out
+  - debug: var=__tomcat_catalina_out.stdout_lines
