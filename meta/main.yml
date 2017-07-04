@@ -30,4 +30,4 @@ galaxy_info:
 
 dependencies:
   - ChristopherDavenport.universal-java
-  - ChristopherDavenport.apache-portable-runtime
+  - { role: ChristopherDavenport.apache-portable-runtime, when: tomcat_use_apr }

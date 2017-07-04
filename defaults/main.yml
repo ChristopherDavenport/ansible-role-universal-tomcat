@@ -16,6 +16,8 @@ tomcat_mirrors:
 # Temporary Storage Directory
 tomcat_tmp_storage: /tmp/tomcat-ansible
 
+tomcat_use_apr: true
+
 tomcat_user_name: tomcat
 tomcat_user_group: tomcat
 tomcat_user_home: /home/{{ tomcat_user_name }}
