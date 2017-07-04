@@ -3,9 +3,19 @@ services:
 
 env:
   global:
-  - SYSTEMD_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - ANSIBLE_ROLE_LOCATION: "/etc/ansible/roles/role_under_test"
+    - SYSTEMD_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - ANSIBLE_ROLE_LOCATION: "/etc/ansible/roles/role_under_test"
+    - playbook: test.yml
   matrix:
+#### No APR Checks
+  - distribution: Ubuntu
+    distribution_version: xenial
+    version: "8.5.12"
+    init: /lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+
+
 # Stable Release Versions - 8.5
 # SystemD
   - distribution: Ubuntu
@@ -182,6 +192,8 @@ env:
 #    init: /sbin/init
 #    run_opts: ""
 
+
+
 before_install:
   # Pull container.
   - 'docker pull ansiblecheck/ansiblecheck:${distribution,,}-${distribution_version}'
@@ -195,14 +207,14 @@ install:
 script:
 
   # Ansible syntax check.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/test.yml --syntax-check'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/${playbook} --syntax-check'
 
   # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/test.yml --extra-vars "tomcat_version=${version}"'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/${playbook} --extra-vars "tomcat_version=${version}"'
 
   # Test Idempotence
   - idempotence=$(mktemp)
-  - docker exec "$(cat ${container_id})" ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/test.yml --extra-vars "tomcat_version=${version}" | tee -a ${idempotence}
+  - docker exec "$(cat ${container_id})" ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/${playbook} --extra-vars "tomcat_version=${version}" | tee -a ${idempotence}
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
