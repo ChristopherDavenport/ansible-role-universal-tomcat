@@ -115,9 +115,10 @@ Example Playbook
 ----------------
 
 ```yaml
-  - hosts: servers
-    roles:
-       - ChristopherDavenport.universal-tomcat
+- hosts: servers
+  roles:
+     - role: ChristopherDavenport.universal-tomcat
+       become: yes
 ```
 
 License
