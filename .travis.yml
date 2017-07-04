@@ -190,7 +190,7 @@ before_install:
   - 'docker run --detach --volume="${PWD}":${ANSIBLE_ROLE_LOCATION}:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
 
 install:
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install ${ANSIBLE_ROLE_LOCATION}/requirements.yml'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r ${ANSIBLE_ROLE_LOCATION}/requirements.yml'
 
 script:
 
