@@ -212,7 +212,11 @@
   when: not __tomcat_apr_dir.stat.exists
   register: __tomcat_apr_configure
   command: >
-    ./configure --with-apr=/usr/local/apr --with-java-home={{ java_home }}
+    ./configure
+    --with-apr=/usr/local/apr
+    --with-java-home={{ java_home }}
+    --with-ssl={{ openssl_install_location }}
+    --prefix={{ tomcat_catalina_home }}
     chdir={{ __tomcat_native_unpacked_dir }}
 
 - name: Debug Output of APR Configure
