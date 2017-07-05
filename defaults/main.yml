@@ -3,12 +3,16 @@
 
 # Tomcat versions available
 # 6.0.47
+# 6.0.51
 # 7.0.72
+# 7.0.76
 # 8.0.38
+# 8.0.42
 # 8.5.6
+# 8.5.12
 # 9.0.0.M18
 
-tomcat_version: "8.5.6"
+tomcat_version: "8.5.12"
 
 tomcat_mirrors:
   - http://archive.apache.org/dist/tomcat
@@ -16,6 +20,7 @@ tomcat_mirrors:
 # Temporary Storage Directory
 tomcat_tmp_storage: /tmp/tomcat-ansible
 
+# Variable That Decides To Install the APR Role Dependency
 tomcat_use_apr: true
 
 tomcat_user_name: tomcat
