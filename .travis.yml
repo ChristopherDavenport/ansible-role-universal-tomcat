@@ -2,49 +2,34 @@ services:
   - docker
 
 env:
+  global:
+    - SYSTEMD_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - ANSIBLE_ROLE_LOCATION: "/etc/ansible/roles/role_under_test"
+    - playbook: test.yml
+  matrix:
+
 # Stable Release Versions - 8.5
 # SystemD
   - distribution: Ubuntu
     distribution_version: xenial
     version: "8.5.12"
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: EL
     distribution_version: "7"
     version: "8.5.12"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: Fedora
     distribution_version: "23"
     version: "8.5.12"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: OracleLinux
     distribution_version: "7"
     version: "8.5.12"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "8.5.12"
-#    init: /sbin/init
-#    run_opts: ""
+    run_opts: "${SYSTEMD_OPTS}"
 
 # Tomcat 8.0 - now superseded by 8.5
 # SystemD
@@ -52,43 +37,22 @@ env:
     distribution_version: xenial
     version: "8.0.42"
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: EL
     distribution_version: "7"
     version: "8.0.42"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: Fedora
     distribution_version: "23"
     version: "8.0.42"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: OracleLinux
     distribution_version: "7"
     version: "8.0.42"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "8.0.42"
-#    init: /sbin/init
-#    run_opts: ""
+    run_opts: "${SYSTEMD_OPTS}"
 
 # Tomcat 7 Support
 # SystemD
@@ -96,43 +60,22 @@ env:
     distribution_version: xenial
     version: "7.0.76"
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: EL
     distribution_version: "7"
     version: "7.0.76"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: Fedora
     distribution_version: "23"
     version: "7.0.76"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: OracleLinux
     distribution_version: "7"
     version: "7.0.76"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "7.0.76"
-#    init: /sbin/init
-#    run_opts: ""
+    run_opts: "${SYSTEMD_OPTS}"
 
 # Tomcat 9 Current Milestone
 # SystemD
@@ -140,65 +83,72 @@ env:
     distribution_version: xenial
     version: "9.0.0.M18"
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: EL
     distribution_version: "7"
     version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: Fedora
     distribution_version: "23"
     version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: "${SYSTEMD_OPTS}"
   - distribution: OracleLinux
     distribution_version: "7"
     version: "9.0.0.M18"
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-# Init
-#  - distribution: Ubuntu
-#    distribution_version: trusty
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: Ubuntu
-#    distribution_version: precise
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: EL
-#    distribution_version: "6"
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
-#  - distribution: OracleLinux
-#    distribution_version: "6"
-#    version: "9.0.0.M18"
-#    init: /sbin/init
-#    run_opts: ""
+    run_opts: "${SYSTEMD_OPTS}"
+
+# NO APR Installations
+# Stable Release Versions - 8.5
+# SystemD
+  - distribution: Ubuntu
+    distribution_version: xenial
+    version: "8.5.12"
+    init: /lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+  - distribution: EL
+    distribution_version: "7"
+    version: "8.5.12"
+    init: /usr/lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+  - distribution: Fedora
+    distribution_version: "23"
+    version: "8.5.12"
+    init: /usr/lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
+  - distribution: OracleLinux
+    distribution_version: "7"
+    version: "8.5.12"
+    init: /usr/lib/systemd/systemd
+    run_opts: "${SYSTEMD_OPTS}"
+    playbook: no_apr.yml
 
 before_install:
   # Pull container.
   - 'docker pull ansiblecheck/ansiblecheck:${distribution,,}-${distribution_version}'
   - container_id=$(mktemp)
   # Start The Built Container In The Background
-  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
+  - 'docker run --detach --volume="${PWD}":${ANSIBLE_ROLE_LOCATION}:ro ${run_opts} ansiblecheck/ansiblecheck:"${distribution,,}"-"${distribution_version}" "${init}" > "${container_id}"'
 
 install:
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install ChristopherDavenport.universal-java'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r ${ANSIBLE_ROLE_LOCATION}/requirements.yml'
 
 script:
 
   # Ansible syntax check.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/${playbook} --syntax-check'
 
   # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --extra-vars "tomcat_version=${version}"'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/${playbook} --extra-vars "tomcat_version=${version}"'
 
   # Test Idempotence
   - idempotence=$(mktemp)
-  - docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --extra-vars "tomcat_version=${version}" | tee -a ${idempotence}
+  - docker exec "$(cat ${container_id})" ansible-playbook ${ANSIBLE_ROLE_LOCATION}/tests/${playbook} --extra-vars "tomcat_version=${version}" | tee -a ${idempotence}
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'

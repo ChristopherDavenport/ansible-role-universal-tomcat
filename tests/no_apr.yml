@@ -2,12 +2,14 @@
 
 - hosts: localhost
   vars:
+    tomcat_use_apr: false
     test_user: tomcat
     tomcat_debug: true
     tomcat_users:
       - name: "{{ test_user }}"
         password: "{{ test_user }}"
         roles: "manager-gui,admin-gui"
+
   pre_tasks:
     - name: Update apt cache.
       apt: update_cache=yes

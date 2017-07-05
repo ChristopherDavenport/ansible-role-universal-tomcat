@@ -10,6 +10,7 @@ Environment='TOMCAT_JAVA_HOME={{ java_home }}'
 
 Environment='CATALINA_HOME={{ tomcat_catalina_home }}'
 Environment='CATALINA_BASE={{ tomcat_catalina_home }}'
+Environment='LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{{ apr_install_location }}/lib:{{ tomcat_catalina_home}}/lib'
 
 {% if tomcat_catalina_opts not in (None, "") %}
 Environment='CATALINA_OPTS={{ tomcat_catalina_opts }}'
