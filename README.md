@@ -8,10 +8,12 @@ This is a system for installing and managing tomcat configurations.
 Requirements
 ------------
 
+None
+
 Role Dependencies
 -----------------
 
-[ChristopherDavenport.universal-java](https://galaxy.ansible.com/ChristopherDavenport/universal-java/)
+[ChristopherDavenport.universal-java](https://galaxy.ansible.com/ChristopherDavenport/universal-java/)  
 [ChristopherDavenport.apache-portable-runtime](https://galaxy.ansible.com/ChristopherDavenport/apache-portable-runtime/) - Contingent on `tomcat_use_apr` variable.
 
 
