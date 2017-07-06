@@ -189,71 +189,10 @@
     group: "{{ tomcat_user_group }}"
     mode: 0755
 
-- name: Set Unpacked APR Directory Location
-  set_fact:
-    __tomcat_native_unpacked_dir: "{{tomcat_instance_path}}/bin/tomcat-native-{{ tomcat_version_specific[tomcat_version].tomcat_native_version }}-src/native"
-
-- name: Check If APR Installed
-  stat:
-    path: "{{ __tomcat_native_unpacked_dir }}"
-  register: __tomcat_apr_dir
-  when: "{{ tomcat_use_apr }}"
-
-
-- name: Install Apache Portable Runtime Integration
-  when: tomcat_use_apr and not __tomcat_apr_dir.stat.exists
-  unarchive:
-    remote_src: yes
-    src: "{{ tomcat_instance_path }}/bin/tomcat-native.tar.gz"
-    dest: "{{ tomcat_instance_path }}/bin"
-    keep_newer: yes
-
-
-- name: Configure APR
-  when: tomcat_use_apr and not __tomcat_apr_dir.stat.exists
-  register: __tomcat_apr_configure
-  command: >
-    ./configure
-    --with-apr={{ apr_install_location }}
-    --with-java-home={{ java_home }}
-    --with-ssl={{ openssl_install_location }}
-    --prefix={{ tomcat_catalina_home }}
-    chdir={{ __tomcat_native_unpacked_dir }}
-
-- name: Debug Output of APR Configure
-  debug: var=__tomcat_apr_configure.stdout_lines
-  when:
-    - tomcat_use_apr
-    - tomcat_debug
-    - not __tomcat_apr_dir.stat.exists
-
-- name: Make APR
-  when: tomcat_use_apr and not __tomcat_apr_dir.stat.exists
-  register: __tomcat_apr_make
-  make:
-    chdir: "{{ __tomcat_native_unpacked_dir }}"
-
-- name: Debug Output of Make APR
-  debug: var=__tomcat_apr_make.stdout_lines
-  when:
-    - tomcat_use_apr
-    - tomcat_debug
-    - not __tomcat_apr_dir.stat.exists
-
-- name: Make Install APR
-  when: tomcat_use_apr and not __tomcat_apr_dir.stat.exists
-  register: __tomcat_apr_make_install
-  make:
-    chdir: "{{ __tomcat_native_unpacked_dir }}"
-    target: install
-  become: yes
-
-- name: Debug Output of Make Install APR
-  debug: var=__tomcat_apr_make_install.stdout_lines
-  when:
-    - tomcat_use_apr
-    - tomcat_debug
-    - not __tomcat_apr_dir.stat.exists
+- name: Install APR
+  include: apr.yml
+  static: true
+  when: tomcat_use_apr
 
 - name: Check if systemd is present
   stat:
