@@ -13,7 +13,7 @@ None
 Role Dependencies
 -----------------
 
-[ChristopherDavenport.universal-java](https://galaxy.ansible.com/ChristopherDavenport/universal-java/) - Contingent on `tomcat_use_java` variable. **If this is set to false java_home variable will need to be provided**
+[ChristopherDavenport.universal-java](https://galaxy.ansible.com/ChristopherDavenport/universal-java/) - Contingent on `tomcat_use_java` variable. **If this is set to false `java_home` variable will need to be provided**
 
 [ChristopherDavenport.apache-portable-runtime](https://galaxy.ansible.com/ChristopherDavenport/apache-portable-runtime/) - Contingent on `tomcat_use_apr` variable.
 
