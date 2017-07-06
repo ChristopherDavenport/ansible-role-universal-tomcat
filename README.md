@@ -13,7 +13,8 @@ None
 Role Dependencies
 -----------------
 
-[ChristopherDavenport.universal-java](https://galaxy.ansible.com/ChristopherDavenport/universal-java/)  
+[ChristopherDavenport.universal-java](https://galaxy.ansible.com/ChristopherDavenport/universal-java/) - Contingent on `tomcat_use_java` variable. **If this is set to false `java_home` variable will need to be provided**
+
 [ChristopherDavenport.apache-portable-runtime](https://galaxy.ansible.com/ChristopherDavenport/apache-portable-runtime/) - Contingent on `tomcat_use_apr` variable.
 
 
@@ -41,6 +42,11 @@ tomcat_mirrors:
 
 # Temporary Storage Directory
 tomcat_tmp_storage: /tmp/tomcat-ansible
+
+# Variable That Decides Installation of Dependency Java
+# If Not Present Through This role variable java_home will
+# need to be provided
+tomcat_use_java: true
 
 # Variable That Decides To Install the APR Role Dependency
 tomcat_use_apr: true
