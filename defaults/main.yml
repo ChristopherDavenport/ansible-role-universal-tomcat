@@ -79,6 +79,9 @@ tomcat_configure_webapps: "{{ tomcat_configure }}"
 tomcat_extra_libs_path: []
 tomcat_webapps_path: []
 
+#Removes ROOT webapp Context if false
+tomcat_root_context: true
+
 # Strings That Allow you to modify your
 # tomcat instance in a predictable fashion.
 tomcat_extra_global_naming_resources: ""
