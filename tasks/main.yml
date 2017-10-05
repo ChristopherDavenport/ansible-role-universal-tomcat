@@ -190,8 +190,7 @@
     mode: 0755
 
 - name: Install APR
-  include: apr.yml
-  static: true
+  import_tasks: apr.yml
   when: tomcat_use_apr
 
 - name: Check if systemd is present
@@ -200,9 +199,9 @@
   register: __stat_init
 
 - name: Install Tomcat Service with systemd
-  include: service_systemd_tomcat.yml
+  include_tasks: service_systemd_tomcat.yml
   when: __stat_init.stat.islnk and ( __stat_init.stat.lnk_source is defined ) and ( "systemd" in __stat_init.stat.lnk_source )
 
 - name: Install Tomcat Service with initctl
-  include: service_ctl_tomcat.yml
+  include_tasks: service_ctl_tomcat.yml
   when: not __stat_init.stat.islnk
