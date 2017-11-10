@@ -197,11 +197,12 @@
   stat:
     path: "/sbin/init"
   register: __stat_init
+  when: tomcat_install_service
 
 - name: Install Tomcat Service with systemd
   include_tasks: service_systemd_tomcat.yml
-  when: __stat_init.stat.islnk and ( __stat_init.stat.lnk_source is defined ) and ( "systemd" in __stat_init.stat.lnk_source )
+  when: __stat_init.stat.islnk and ( __stat_init.stat.lnk_source is defined ) and ( "systemd" in __stat_init.stat.lnk_source ) and tomcat_install_service
 
 - name: Install Tomcat Service with initctl
   include_tasks: service_ctl_tomcat.yml
-  when: not __stat_init.stat.islnk
+  when: not __stat_init.stat.islnk and tomcat_install_service

@@ -49,6 +49,9 @@ tomcat_prefer_ipv4: true
 tomcat_override_uri_encoding: ""
 tomcat_prefer_urandom: true
 
+# install service with initctl / systemd
+tomcat_install_service: true
+
 tomcat_instance: tomcat
 
 tomcat_roles:
