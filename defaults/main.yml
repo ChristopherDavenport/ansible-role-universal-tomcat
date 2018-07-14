@@ -11,6 +11,7 @@
 # 8.5.6
 # 8.5.12
 # 9.0.0.M18
+# 9.0.10
 
 tomcat_version: "8.5.12"
 
@@ -159,5 +160,9 @@ tomcat_version_specific:
     tomcat_native_version: "1.2.12"
   "9.0.0.M18":
     checksum: md5:626e16b93de65b2a58714ed50f00d9f9
+    web_xml_schema_version: 3.1
+    tomcat_native_version: "1.2.12"
+  "9.0.10":
+    checksum: md5:78afd9176fb521952bc12a63d911301a
     web_xml_schema_version: 3.1
     tomcat_native_version: "1.2.12"
